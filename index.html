@@ -195,6 +195,38 @@ html, body { font-family: var(--font-primary); font-weight: 300; color: var(--vc
 }
 .gap-callout p + p { margin-top: 10px; }
 
+/* Placeholder notice */
+.placeholder-notice {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding: 18px 28px;
+  background: repeating-linear-gradient(45deg, #fde5dd, #fde5dd 10px, #fff 10px, #fff 20px);
+  border-left: 5px solid var(--vc-orange);
+  border-right: 5px solid var(--vc-orange);
+}
+.placeholder-notice .inner {
+  background: var(--vc-white);
+  padding: 14px 18px;
+  border: 1px solid var(--vc-orange);
+}
+.placeholder-notice .tag {
+  display: inline-block;
+  background: var(--vc-orange);
+  color: var(--vc-white);
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  margin-right: 10px;
+}
+.placeholder-notice p {
+  display: inline;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.placeholder-notice p strong { font-weight: 700; }
+
 /* Tabs */
 .tabs {
   max-width: 1200px;
@@ -608,6 +640,13 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
     <p>The five models below map to those two gaps. Models 01 and 03–05 are different bets on the annual-snapshot question: which partner, which methodology, which reference budget. Model 02 is the unique one — a real-time composite that no NYC-focused publisher currently produces. The right choice depends on whether the priority is depth (annual, comprehensive) or cadence (monthly, responsive to events like fare hikes, rent-stabilization decisions, or a new administration's first months).</p>
   </div>
 </section>
+
+<div class="placeholder-notice">
+  <div class="inner">
+    <span class="tag">Not actual numbers</span>
+    <p>Every KPI tile, chart value, and composite score in the five model mockups below is an <strong>illustrative placeholder</strong>, not a real reading from the source. The organizations, methodologies, data sources, cadences, and links above are accurate — but the specific figures are meant only to show what each model would look like once built. Real numbers will be pulled from each source before publication.</p>
+  </div>
+</div>
 
 <nav class="tabs" role="tablist">
   <button class="tab active" data-tab="p1" role="tab"><span class="num">01</span>Poverty tracker partnership</button>
