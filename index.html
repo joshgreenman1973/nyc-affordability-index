@@ -396,15 +396,17 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
 </header>
 
 <section class="hero">
-  <div class="kicker">Methodology mockup · three models</div>
+  <div class="kicker">Methodology mockup · five models</div>
   <h1>What could a five-borough affordability index actually measure?</h1>
-  <p class="dek">Three different approaches to tracking whether the Bronx, Brooklyn, Manhattan, Queens, and Staten Island are getting more or less affordable — each with its own cadence, data source, and tradeoff between timeliness and depth. All three are scoped to the five boroughs only; design mockups built on real, publicly available data to pressure-test what each model would look like in practice.</p>
+  <p class="dek">Five different approaches to tracking whether the Bronx, Brooklyn, Manhattan, Queens, and Staten Island are getting more or less affordable — each with its own cadence, data source, and tradeoff between timeliness and depth. All five are scoped to the five boroughs only; design mockups built on real, publicly available data to pressure-test what each model would look like in practice.</p>
 </section>
 
 <nav class="tabs" role="tablist">
   <button class="tab active" data-tab="p1" role="tab"><span class="num">01</span>Poverty tracker partnership</button>
   <button class="tab" data-tab="p2" role="tab"><span class="num">02</span>Real-time cost dashboard</button>
   <button class="tab" data-tab="p3" role="tab"><span class="num">03</span>Minimum cost of living</button>
+  <button class="tab" data-tab="p4" role="tab"><span class="num">04</span>MIT living wage (NYC)</button>
+  <button class="tab" data-tab="p5" role="tab"><span class="num">05</span>EPI family budget (NYC)</button>
 </nav>
 
 <!-- ========================= MODEL 1 ========================= -->
@@ -717,6 +719,172 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
   </div>
 </section>
 
+<!-- ========================= MODEL 4: MIT Living Wage ========================= -->
+<section class="panel" id="p4">
+  <div class="panel-header">
+    <div class="kicker">Model 04 · annual · MIT Living Wage Calculator</div>
+    <h2>What wage does a New Yorker actually need to cover the basics?</h2>
+    <p class="dek">MIT's Living Wage Calculator, maintained by Amy Glasmeier's team at MIT, publishes a county-level "living wage" — the hourly rate a worker must earn to cover minimum costs of food, housing, childcare, healthcare, transportation, and taxes. New York City's five counties (Bronx, Kings, New York, Queens, Richmond) each get their own calculation, updated annually.</p>
+  </div>
+
+  <div class="tradeoffs">
+    <div class="tradeoff-card">
+      <h4>Why this model</h4>
+      <ul>
+        <li>Already published for each of the five boroughs as a separate county</li>
+        <li>Translates cost of living into a single, intuitive hourly number</li>
+        <li>Annual update schedule with transparent methodology</li>
+        <li>Directly comparable to NYC minimum wage ($16.50 in 2025)</li>
+      </ul>
+    </div>
+    <div class="tradeoff-card cons">
+      <h4>Constraints</h4>
+      <ul>
+        <li>One-time annual update; no in-year signal</li>
+        <li>Housing benchmark is HUD FMR, which can lag hot markets</li>
+        <li>Childcare uses state average — NYC prices run higher</li>
+        <li>Does not account for savings, debt payments, or emergencies</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi accent">
+      <div class="label">Living wage, single adult, Manhattan</div>
+      <div class="value">$28<span class="unit">.55/hr</span></div>
+      <div class="delta">$59,380 annually</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">Living wage, 2 adults + 2 kids, both working</div>
+      <div class="value">$30<span class="unit">.38/hr</span></div>
+      <div class="delta">Each · $126,380 combined</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">Living wage, single parent + 2 kids</div>
+      <div class="value">$64<span class="unit">.17/hr</span></div>
+      <div class="delta">$133,480 annually</div>
+    </div>
+    <div class="kpi good">
+      <div class="label">NY State minimum wage, NYC</div>
+      <div class="value">$16<span class="unit">.50/hr</span></div>
+      <div class="delta">2025 rate</div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>The living wage for a single adult varies by borough</h3>
+      <div class="sub">Required hourly wage, one working adult, no children, 2024</div>
+      <div class="canvas-wrap"><canvas id="chart4a"></canvas></div>
+      <div class="source">Source: MIT Living Wage Calculator (livingwage.mit.edu), 2024 estimates for Bronx, Kings, New York, Queens, and Richmond counties.</div>
+    </div>
+    <div class="chart-card">
+      <h3>A parent alone needs more than four times the minimum wage</h3>
+      <div class="sub">Living wage for an adult in Manhattan, by household composition</div>
+      <div class="canvas-wrap"><canvas id="chart4b"></canvas></div>
+      <div class="source">Source: MIT Living Wage Calculator, New York County (Manhattan), 2024. Minimum wage is New York State rate for NYC.</div>
+    </div>
+  </div>
+
+  <div class="chart-grid one-col">
+    <div class="chart-card">
+      <h3>Where the money goes: MIT's cost components for a NYC family of four</h3>
+      <div class="sub">Annual required expenditure, two adults + two children, Manhattan, 2024</div>
+      <div class="canvas-wrap" style="height:280px"><canvas id="chart4c"></canvas></div>
+      <div class="source">Source: MIT Living Wage Calculator, New York County, 2024. Categories as defined by MIT: food, childcare, medical, housing, transportation, civic, other, annual taxes.</div>
+    </div>
+  </div>
+
+  <div class="method">
+    <h4>Methodology note</h4>
+    <p>MIT's Living Wage Calculator follows a bottom-up approach similar to the Urban Institute's basic-needs budget, but produces an hourly wage rather than an annual total. Housing uses HUD Fair Market Rents; food uses USDA's low-cost plan; childcare uses state-average provider costs; healthcare blends MEPS premiums with out-of-pocket averages; transportation uses a cost-per-mile from the BLS Consumer Expenditure Survey. Taxes are modeled so the wage nets to the required budget.</p>
+    <p>As an affordability index, MIT's value is that it is already borough-specific, already annual, and already published — it can be pulled the day it updates. Its limitation is that it is a wage benchmark, not a measure of whether New Yorkers are actually earning it. Pairing MIT's living wage with wage distributions from the Quarterly Census of Employment and Wages would produce a "share of NYC jobs paying below a living wage" metric that is both scorable and publishable annually.</p>
+  </div>
+</section>
+
+<!-- ========================= MODEL 5: EPI Family Budget ========================= -->
+<section class="panel" id="p5">
+  <div class="panel-header">
+    <div class="kicker">Model 05 · biennial · EPI Family Budget Calculator</div>
+    <h2>What does it cost a family to reach a "modest but adequate" standard of living?</h2>
+    <p class="dek">The Economic Policy Institute's Family Budget Calculator reports monthly costs for ten family types across 3,143 counties and metro areas. Its NYC figures cover the five-borough metro, and — unlike SPM or official poverty thresholds — it is designed to capture what's needed to live decently, not just survive.</p>
+  </div>
+
+  <div class="tradeoffs">
+    <div class="tradeoff-card">
+      <h4>Why this model</h4>
+      <ul>
+        <li>Published by a well-known research institute with a long track record</li>
+        <li>Standardized methodology across every U.S. metro — national comparisons are easy</li>
+        <li>Captures "modest but adequate" rather than bare subsistence</li>
+        <li>Ten family compositions let you cut the data many ways</li>
+      </ul>
+    </div>
+    <div class="tradeoff-card cons">
+      <h4>Constraints</h4>
+      <ul>
+        <li>Geography is NYC metro area, not strictly the five boroughs</li>
+        <li>Updated roughly every 2–3 years (latest release: 2024)</li>
+        <li>Does not include savings, debt, or meaningful emergency reserves</li>
+        <li>EPI has a progressive policy lean — framing matters in presentation</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi accent">
+      <div class="label">Family of four, NYC metro</div>
+      <div class="value">$148K</div>
+      <div class="delta">Annual · 2024 dollars</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">Monthly cost, family of four</div>
+      <div class="value">$12,300</div>
+      <div class="delta">All categories combined</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">Single adult, NYC metro</div>
+      <div class="value">$63K</div>
+      <div class="delta">Annual · 2024 dollars</div>
+    </div>
+    <div class="kpi">
+      <div class="label">NYC metro rank, 411 metros</div>
+      <div class="value">#3</div>
+      <div class="delta">Most expensive, family of four</div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>NYC ranks among the most expensive U.S. metros for a family of four</h3>
+      <div class="sub">EPI modest-but-adequate annual family budget, top ten metros, 2024</div>
+      <div class="canvas-wrap"><canvas id="chart5a"></canvas></div>
+      <div class="source">Source: EPI Family Budget Calculator 2024, two-parent-two-child household, selected metro areas.</div>
+    </div>
+    <div class="chart-card">
+      <h3>Childcare and housing are the twin weights on the NYC budget</h3>
+      <div class="sub">Monthly share of family-of-four budget, NYC metro, 2024</div>
+      <div class="canvas-wrap"><canvas id="chart5b"></canvas></div>
+      <div class="source">Source: EPI Family Budget Calculator, NYC metro area, 2024, two parents and two children.</div>
+    </div>
+  </div>
+
+  <div class="chart-grid one-col">
+    <div class="chart-card">
+      <h3>EPI's NYC budget has grown faster than wages every year since 2020</h3>
+      <div class="sub">Indexed change, 2018 = 100, two-parent-two-child household</div>
+      <div class="canvas-wrap" style="height:280px"><canvas id="chart5c"></canvas></div>
+      <div class="source">Source: EPI Family Budget Calculator releases 2018, 2020, 2022, 2024; BLS NYC metro average hourly earnings.</div>
+    </div>
+  </div>
+
+  <div class="method">
+    <h4>Methodology note</h4>
+    <p>EPI's calculator sums seven line items — housing (HUD 40th-percentile FMR), food (USDA Low-Cost Food Plan), transportation (distance-based model), childcare (state Child Care Aware data), healthcare (MEPS), other necessities (BLS Consumer Expenditure Survey), and taxes — for ten household types across every U.S. metro. The NYC figure covers the New York–Newark–Jersey City metro (the same geography as BLS CPI), so it is not strictly the five boroughs.</p>
+    <p>For a Vital City index, EPI's strength is standardization: it lets us say "NYC is the [Nth] most expensive major metro for a family of four" with a consistent methodology behind the number. The tradeoffs are geographic fuzziness (metro, not borough) and cadence (every 2–3 years). The cleanest use is as a benchmark layer — the published EPI number — layered on top of the monthly dashboard (Model 02) for timely signal.</p>
+  </div>
+</section>
+
 <footer>
   <div class="inner">
     <p>Design exploration for a forthcoming five-borough NYC affordability index. All figures on this page are drawn from public data or prior published estimates and serve as mockup placeholders. Final numbers will depend on the model ultimately chosen and any data-sharing agreements reached.</p>
@@ -897,6 +1065,135 @@ new Chart(document.getElementById('chart3a'), {
     plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } } },
     scales: {
       y: { ticks: { callback: v => '$' + (v/1000) + 'k' }, grid: { color: '#eee' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ===== Chart 4a: MIT living wage by borough, single adult =====
+new Chart(document.getElementById('chart4a'), {
+  type: 'bar',
+  data: {
+    labels: ['Manhattan','Brooklyn','Queens','Bronx','Staten Island'],
+    datasets: [{
+      data: [28.55, 26.80, 25.40, 24.10, 25.20],
+      backgroundColor: VC.chartreuse
+    }, {
+      label: 'Minimum wage',
+      data: [16.50, 16.50, 16.50, 16.50, 16.50],
+      type: 'line',
+      borderColor: VC.orange,
+      borderWidth: 2,
+      pointRadius: 0,
+      borderDash: [5,3]
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => '$' + c.parsed.y + '/hr' } } },
+    scales: {
+      y: { ticks: { callback: v => '$' + v }, grid: { color: '#eee' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ===== Chart 4b: MIT living wage by household =====
+new Chart(document.getElementById('chart4b'), {
+  type: 'bar',
+  data: {
+    labels: ['Single adult','2 adults (1 working), no kids','2 adults (both working), no kids','2 adults (1 working), 2 kids','2 adults (both working), 2 kids','Single parent, 1 child','Single parent, 2 kids'],
+    datasets: [{
+      data: [28.55, 45.30, 17.20, 47.87, 30.38, 51.20, 64.17],
+      backgroundColor: [VC.chartreuse, VC.chartreuse, VC.chartreuse, VC.orange, VC.orange, VC.magenta, VC.magenta]
+    }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => '$' + c.parsed.x + '/hr' } } },
+    scales: {
+      x: { ticks: { callback: v => '$' + v }, grid: { color: '#eee' } },
+      y: { grid: { display: false }, ticks: { font: { size: 11 } } }
+    }
+  }
+});
+
+// ===== Chart 4c: MIT cost components =====
+new Chart(document.getElementById('chart4c'), {
+  type: 'bar',
+  data: {
+    labels: ['Housing','Childcare','Taxes','Food','Medical','Transportation','Other','Civic'],
+    datasets: [{
+      data: [32400, 28900, 18700, 14200, 9800, 8100, 7600, 3700],
+      backgroundColor: [VC.magenta, VC.orange, VC.indigo, VC.chartreuse, VC.periwinkle, VC.cerulean, VC.rose, VC.charcoal]
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => '$' + c.parsed.y.toLocaleString() } } },
+    scales: {
+      y: { ticks: { callback: v => '$' + (v/1000) + 'k' }, grid: { color: '#eee' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ===== Chart 5a: EPI top metros =====
+new Chart(document.getElementById('chart5a'), {
+  type: 'bar',
+  data: {
+    labels: ['San Francisco','San Jose','New York','Boston','Washington DC','Seattle','Los Angeles','Chicago','Atlanta','Houston'],
+    datasets: [{
+      data: [159000, 156000, 148000, 134000, 131000, 127000, 121000, 108000, 96000, 91000],
+      backgroundColor: ctx => ctx.dataIndex === 2 ? VC.magenta : VC.cerulean
+    }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => '$' + c.parsed.x.toLocaleString() } } },
+    scales: {
+      x: { ticks: { callback: v => '$' + (v/1000) + 'k' }, grid: { color: '#eee' } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// ===== Chart 5b: EPI NYC composition =====
+new Chart(document.getElementById('chart5b'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Childcare','Housing','Healthcare','Transportation','Food','Taxes','Other'],
+    datasets: [{
+      data: [2600, 2650, 1700, 1500, 1250, 1500, 1100],
+      backgroundColor: [VC.orange, VC.magenta, VC.periwinkle, VC.cerulean, VC.chartreuse, VC.indigo, VC.rose],
+      borderWidth: 2,
+      borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 } } },
+      tooltip: { callbacks: { label: c => c.label + ': $' + c.parsed.toLocaleString() + '/mo' } }
+    }
+  }
+});
+
+// ===== Chart 5c: EPI budget vs wages over time =====
+new Chart(document.getElementById('chart5c'), {
+  type: 'line',
+  data: {
+    labels: ['2018','2020','2022','2024'],
+    datasets: [
+      { label: 'EPI family budget, NYC', data: [100, 106, 121, 138], borderColor: VC.magenta, backgroundColor: VC.magenta, tension: 0.2, borderWidth: 3 },
+      { label: 'NYC metro wages', data: [100, 108, 118, 127], borderColor: VC.cerulean, backgroundColor: VC.cerulean, tension: 0.2, borderWidth: 3 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } } },
+    scales: {
+      y: { min: 95, grid: { color: '#eee' } },
       x: { grid: { display: false } }
     }
   }
