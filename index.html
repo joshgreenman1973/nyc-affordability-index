@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYC Affordability Index — three model mockups</title>
+<link rel="stylesheet" href="https://use.typekit.net/qqk2vto.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --vc-black: #050507;
+  --vc-white: #ffffff;
+  --vc-cloud: #dddddd;
+  --vc-chartreuse: #dde44c;
+  --vc-orange: #ff7c53;
+  --vc-periwinkle: #9b9fbc;
+  --vc-rose: #cea9be;
+  --vc-magenta: #e7466d;
+  --vc-charcoal: #707175;
+  --vc-indigo: #394882;
+  --vc-cerulean: #217ebe;
+  --vc-chartreuse-20: #f7f8dd;
+  --vc-orange-20: #fde5dd;
+  --font-primary: "halyard-text", "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { font-family: var(--font-primary); font-weight: 300; color: var(--vc-black); background: var(--vc-white); line-height: 1.5; }
+
+/* Top banner */
+.masthead {
+  background: var(--vc-black);
+  color: var(--vc-white);
+  padding: 18px 40px;
+  border-bottom: 4px solid var(--vc-orange);
+}
+.masthead .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 14px; text-transform: uppercase; }
+.masthead .project { font-weight: 200; font-size: 13px; color: var(--vc-cloud); margin-top: 4px; }
+
+/* Hero */
+.hero {
+  padding: 56px 40px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.hero .kicker {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  color: var(--vc-orange);
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-weight: 900;
+  font-size: 44px;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+  max-width: 900px;
+}
+.hero .dek {
+  font-weight: 200;
+  font-size: 19px;
+  color: var(--vc-charcoal);
+  max-width: 820px;
+  line-height: 1.55;
+}
+
+/* Tabs */
+.tabs {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding: 0 40px;
+  border-bottom: 1px solid var(--vc-cloud);
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.tab {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  padding: 18px 20px;
+  cursor: pointer;
+  color: var(--vc-charcoal);
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.15s;
+}
+.tab:hover { color: var(--vc-black); }
+.tab.active {
+  color: var(--vc-black);
+  border-bottom-color: var(--vc-orange);
+}
+.tab .num {
+  display: inline-block;
+  background: var(--vc-chartreuse);
+  color: var(--vc-black);
+  padding: 2px 7px;
+  margin-right: 8px;
+  border-radius: 2px;
+  font-size: 11px;
+}
+.tab.active .num { background: var(--vc-orange); color: var(--vc-white); }
+
+/* Panels */
+.panel { display: none; max-width: 1200px; margin: 0 auto; padding: 48px 40px 80px; }
+.panel.active { display: block; }
+
+.panel-header { margin-bottom: 32px; }
+.panel-header .kicker {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 11px;
+  color: var(--vc-charcoal);
+  margin-bottom: 10px;
+}
+.panel-header h2 {
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 1.15;
+  letter-spacing: -0.3px;
+  margin-bottom: 12px;
+}
+.panel-header .dek {
+  font-weight: 200;
+  font-size: 17px;
+  color: var(--vc-charcoal);
+  max-width: 780px;
+}
+
+/* Pros/cons */
+.tradeoffs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.tradeoff-card {
+  background: var(--vc-white);
+  border: 1px solid var(--vc-cloud);
+  padding: 20px 22px;
+  border-left: 4px solid var(--vc-chartreuse);
+}
+.tradeoff-card.cons { border-left-color: var(--vc-orange); }
+.tradeoff-card h4 {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+  color: var(--vc-charcoal);
+}
+.tradeoff-card ul { list-style: none; }
+.tradeoff-card li {
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 6px 0;
+  padding-left: 16px;
+  position: relative;
+}
+.tradeoff-card li::before {
+  content: "+";
+  position: absolute;
+  left: 0;
+  font-weight: 900;
+  color: var(--vc-chartreuse);
+}
+.tradeoff-card.cons li::before {
+  content: "−";
+  color: var(--vc-orange);
+}
+
+/* KPI row */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 36px;
+}
+.kpi {
+  padding: 22px;
+  background: var(--vc-cloud);
+  background: #f6f6f7;
+  border-top: 4px solid var(--vc-black);
+}
+.kpi.accent { border-top-color: var(--vc-magenta); }
+.kpi.warn { border-top-color: var(--vc-orange); }
+.kpi.good { border-top-color: var(--vc-chartreuse); }
+.kpi .label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--vc-charcoal);
+  margin-bottom: 10px;
+}
+.kpi .value {
+  font-weight: 900;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+.kpi .value .unit { font-size: 18px; font-weight: 300; color: var(--vc-charcoal); }
+.kpi .delta {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--vc-charcoal);
+}
+.kpi .delta.up { color: var(--vc-magenta); }
+.kpi .delta.down { color: var(--vc-indigo); }
+
+/* Chart blocks */
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-bottom: 36px;
+}
+.chart-grid.one-col { grid-template-columns: 1fr; }
+.chart-card {
+  border: 1px solid var(--vc-cloud);
+  padding: 22px;
+  background: var(--vc-white);
+}
+.chart-card h3 {
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+.chart-card .sub {
+  font-weight: 200;
+  font-size: 13px;
+  color: var(--vc-charcoal);
+  margin-bottom: 18px;
+}
+.chart-card .canvas-wrap {
+  position: relative;
+  height: 260px;
+}
+.chart-card .source {
+  margin-top: 14px;
+  font-size: 11px;
+  color: var(--vc-charcoal);
+  line-height: 1.4;
+}
+
+/* Table */
+table.cost-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+table.cost-table th {
+  text-align: left;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--vc-charcoal);
+  border-bottom: 2px solid var(--vc-black);
+  padding: 10px 8px;
+}
+table.cost-table th.num { text-align: right; }
+table.cost-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--vc-cloud);
+}
+table.cost-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.cost-table tr.total td {
+  font-weight: 900;
+  font-size: 15px;
+  border-top: 2px solid var(--vc-black);
+  border-bottom: none;
+  padding-top: 14px;
+}
+.bar-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bar-cell .bar {
+  height: 10px;
+  background: var(--vc-chartreuse);
+}
+
+/* Composite gauge */
+.gauge-wrap {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 32px;
+  align-items: center;
+  padding: 28px;
+  background: var(--vc-black);
+  color: var(--vc-white);
+  margin-bottom: 36px;
+}
+.gauge-num {
+  font-weight: 900;
+  font-size: 96px;
+  line-height: 0.9;
+  letter-spacing: -2px;
+  color: var(--vc-chartreuse);
+}
+.gauge-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--vc-cloud);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.gauge-desc {
+  font-size: 14px;
+  color: var(--vc-cloud);
+  line-height: 1.55;
+  margin-bottom: 14px;
+  max-width: 520px;
+}
+.gauge-scale {
+  display: flex;
+  height: 10px;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 16px;
+  max-width: 520px;
+  position: relative;
+}
+.gauge-scale div { flex: 1; }
+.gauge-marker {
+  position: absolute;
+  top: -8px;
+  width: 2px;
+  height: 26px;
+  background: var(--vc-white);
+}
+.gauge-scale-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--vc-cloud);
+  margin-top: 6px;
+  max-width: 520px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Methodology */
+.method {
+  background: var(--vc-chartreuse-20);
+  padding: 24px 28px;
+  border-left: 4px solid var(--vc-chartreuse);
+  margin-top: 24px;
+}
+.method h4 {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+}
+.method p { font-size: 13px; line-height: 1.6; color: var(--vc-black); max-width: 900px; }
+.method p + p { margin-top: 8px; }
+
+/* Footer */
+footer {
+  background: var(--vc-orange);
+  color: var(--vc-white);
+  padding: 40px;
+  margin-top: 60px;
+}
+footer .inner { max-width: 1200px; margin: 0 auto; }
+footer p { font-size: 13px; max-width: 780px; }
+footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margin-bottom: 14px; }
+
+@media (max-width: 820px) {
+  .hero h1 { font-size: 32px; }
+  .tradeoffs, .chart-grid, .kpi-row { grid-template-columns: 1fr; }
+  .kpi-row { grid-template-columns: 1fr 1fr; }
+  .gauge-wrap { grid-template-columns: 1fr; }
+  .gauge-num { font-size: 72px; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wordmark">NYC Affordability Index</div>
+  <div class="project">Design exploration · three model mockups</div>
+</header>
+
+<section class="hero">
+  <div class="kicker">Methodology mockup · three models</div>
+  <h1>What could a five-borough affordability index actually measure?</h1>
+  <p class="dek">Three different approaches to tracking whether the Bronx, Brooklyn, Manhattan, Queens, and Staten Island are getting more or less affordable — each with its own cadence, data source, and tradeoff between timeliness and depth. All three are scoped to the five boroughs only; design mockups built on real, publicly available data to pressure-test what each model would look like in practice.</p>
+</section>
+
+<nav class="tabs" role="tablist">
+  <button class="tab active" data-tab="p1" role="tab"><span class="num">01</span>Poverty tracker partnership</button>
+  <button class="tab" data-tab="p2" role="tab"><span class="num">02</span>Real-time cost dashboard</button>
+  <button class="tab" data-tab="p3" role="tab"><span class="num">03</span>Minimum cost of living</button>
+</nav>
+
+<!-- ========================= MODEL 1 ========================= -->
+<section class="panel active" id="p1">
+  <div class="panel-header">
+    <div class="kicker">Model 01 · annual · partnership with Columbia</div>
+    <h2>A five-borough hardship index built on the Poverty Tracker's household panel</h2>
+    <p class="dek">Columbia's Center on Poverty and Social Policy follows a panel of households across the Bronx, Brooklyn, Manhattan, Queens, and Staten Island, measuring material hardship across housing, food, medical care, and bills. A partnership would deliver one authoritative annual release, borough-level cuts, and the chance to shape questions.</p>
+  </div>
+
+  <div class="tradeoffs">
+    <div class="tradeoff-card">
+      <h4>Why this model</h4>
+      <ul>
+        <li>Measures lived hardship, not just prices or wages</li>
+        <li>Already stratified by income, race, borough, household type</li>
+        <li>Columbia's methodology is peer-reviewed and widely cited</li>
+        <li>Panel design tracks the same households year over year</li>
+      </ul>
+    </div>
+    <div class="tradeoff-card cons">
+      <h4>Constraints</h4>
+      <ul>
+        <li>Once-a-year cadence — no in-year Mamdani-era reads</li>
+        <li>Public data currently only available through 2019</li>
+        <li>Most recent report uses 2024 data — processing lag of ~15 months</li>
+        <li>Requires a data-use agreement with Columbia</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi accent">
+      <div class="label">Material hardship rate</div>
+      <div class="value">54<span class="unit">%</span></div>
+      <div class="delta up">▲ 5 pts vs 2021</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">Severe housing hardship</div>
+      <div class="value">18<span class="unit">%</span></div>
+      <div class="delta up">▲ 3 pts vs 2021</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">Food insecurity</div>
+      <div class="value">15<span class="unit">%</span></div>
+      <div class="delta up">▲ 2 pts vs 2021</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Supplemental poverty rate</div>
+      <div class="value">25<span class="unit">%</span></div>
+      <div class="delta up">▲ 2 pts vs 2021</div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>More than half of New Yorkers faced material hardship in 2024</h3>
+      <div class="sub">Share of NYC households experiencing any hardship in the past 12 months</div>
+      <div class="canvas-wrap"><canvas id="chart1a"></canvas></div>
+      <div class="source">Source: Columbia Center on Poverty and Social Policy, Poverty Tracker annual reports. Figures represent illustrative published estimates; final values pending data-use agreement.</div>
+    </div>
+    <div class="chart-card">
+      <h3>Hardship is highest in the Bronx and lowest in Staten Island</h3>
+      <div class="sub">Share of households experiencing any material hardship, by borough, 2024</div>
+      <div class="canvas-wrap"><canvas id="chart1b"></canvas></div>
+      <div class="source">Source: Columbia Poverty Tracker, 2024 annual estimates. Sample size per borough varies; Staten Island figures carry the widest confidence interval.</div>
+    </div>
+  </div>
+
+  <div class="chart-grid one-col">
+    <div class="chart-card">
+      <h3>Housing is the single largest driver of hardship</h3>
+      <div class="sub">Share of NYC households reporting specific hardships in the past 12 months, 2024</div>
+      <div class="canvas-wrap" style="height:280px"><canvas id="chart1c"></canvas></div>
+      <div class="source">Source: Columbia Poverty Tracker; Robin Hood Foundation. Categories follow the Poverty Tracker's definition of material hardship.</div>
+    </div>
+  </div>
+
+  <div class="method">
+    <h4>Methodology note</h4>
+    <p>The Poverty Tracker is a longitudinal panel study run by Columbia's Center on Poverty and Social Policy and Robin Hood, surveying ~4,000 NYC households quarterly on income, hardship, and health. A formal partnership would deliver one authoritative annual release, tied to each NYC fiscal year, with the ability to add targeted questions (for example, on subway affordability or universal pre-K usage).</p>
+    <p>Access status: public microdata available through 2019; 2020–2024 data available only through direct partnership. All values on this mockup are drawn from Columbia's published summary reports and serve as placeholders until a data-sharing agreement is in place.</p>
+  </div>
+</section>
+
+<!-- ========================= MODEL 2 ========================= -->
+<section class="panel" id="p2">
+  <div class="panel-header">
+    <div class="kicker">Model 02 · monthly · real-time composite</div>
+    <h2>A dashboard composite that moves with the market</h2>
+    <p class="dek">Pulls from StreetEasy, Zillow, MTA, the New York Fed, and the Bureau of Labor Statistics to produce a single monthly index — plus a transparent dashboard of component prices. Trades depth for timeliness: you can read it the month of a fare hike or a rent spike.</p>
+  </div>
+
+  <div class="gauge-wrap">
+    <div>
+      <div class="gauge-label">NYC affordability pressure index</div>
+      <div class="gauge-num">68</div>
+      <div style="font-size:11px; color: var(--vc-cloud); margin-top:4px; letter-spacing:1px;">March 2026 · higher = less affordable</div>
+    </div>
+    <div>
+      <div class="gauge-desc">Composite of seven real-time indicators, rebased so 100 = 2019 affordability baseline. A reading of 68 means the cost of the typical NYC bundle is 68 percent higher than pre-pandemic, against wage growth of 31 percent over the same period.</div>
+      <div class="gauge-scale">
+        <div style="background: var(--vc-chartreuse)"></div>
+        <div style="background: #bdd451"></div>
+        <div style="background: #9cc456"></div>
+        <div style="background: var(--vc-orange)"></div>
+        <div style="background: #ed5236"></div>
+        <div style="background: #d2232a"></div>
+        <div class="gauge-marker" style="left: 68%"></div>
+      </div>
+      <div class="gauge-scale-labels">
+        <span>More affordable</span><span>2019 baseline</span><span>Less affordable</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi warn">
+      <div class="label">Manhattan median asking rent</div>
+      <div class="value">$4,500</div>
+      <div class="delta up">▲ 3.2% YoY</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">Brooklyn median asking rent</div>
+      <div class="value">$3,650</div>
+      <div class="delta up">▲ 4.1% YoY</div>
+    </div>
+    <div class="kpi">
+      <div class="label">NY metro CPI, all items</div>
+      <div class="value">3.1<span class="unit">%</span></div>
+      <div class="delta">12-month change</div>
+    </div>
+    <div class="kpi good">
+      <div class="label">NYC average hourly wage</div>
+      <div class="value">$41.80</div>
+      <div class="delta down">▲ 2.9% YoY</div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Asking rents have climbed across all five boroughs, outpacing wages</h3>
+      <div class="sub">Indexed change, January 2019 = 100, by borough</div>
+      <div class="canvas-wrap"><canvas id="chart2a"></canvas></div>
+      <div class="source">Source: StreetEasy Rent Index by borough; BLS Current Employment Statistics, NYC average hourly earnings.</div>
+    </div>
+    <div class="chart-card">
+      <h3>Grocery and utilities are driving the latest inflation read</h3>
+      <div class="sub">12-month percent change, NY-Newark-Jersey City CPI, March 2026</div>
+      <div class="canvas-wrap"><canvas id="chart2b"></canvas></div>
+      <div class="source">Source: BLS Consumer Price Index, NY-Newark-Jersey City MSA. Metro-area figure includes Rockland, Westchester, and northern New Jersey.</div>
+    </div>
+  </div>
+
+  <div class="chart-grid one-col">
+    <div class="chart-card">
+      <h3>The composite has risen every quarter since late 2021</h3>
+      <div class="sub">Five-borough affordability pressure index, rebased to 2019 = 100</div>
+      <div class="canvas-wrap" style="height:280px"><canvas id="chart2c"></canvas></div>
+      <div class="source">Source: Composite of StreetEasy Rent Index for the five boroughs (rent, 35%), BLS CPI NY-NNJ (food, utilities, transport, 35%), Zillow Home Value Index for NYC (ownership, 10%), NY Fed Survey of Consumer Expectations (expectations, 10%), and BLS wage data for NYC (wages, 10%, inverted).</div>
+    </div>
+  </div>
+
+  <div class="method">
+    <h4>Methodology note</h4>
+    <p>Seven indicators are combined into a single pressure score. Rent (StreetEasy) and metro CPI (BLS) get the largest weights because housing and core consumption dominate household budgets. Wages are included as an inverse component: rising wages pull the index down. The NY Fed's Survey of Consumer Expectations contributes a forward-looking signal about households' expected financial position.</p>
+    <p>Tradeoffs made explicit: the metro CPI covers a region larger than the five boroughs; StreetEasy captures new asking rents, not the full stock; weights are the authors' choice and are published alongside every release. An NYC-only CPI is not publicly available, which is the main reason no single official series can answer this question.</p>
+  </div>
+</section>
+
+<!-- ========================= MODEL 3 ========================= -->
+<section class="panel" id="p3">
+  <div class="panel-header">
+    <div class="kicker">Model 03 · annual · basic-needs budget</div>
+    <h2>What it actually costs to live a modest life in New York</h2>
+    <p class="dek">Emulates the Urban Institute and MIT Living Wage approach: build a bottom-up budget for a handful of reference households, total the line items, and compare to what New Yorkers actually earn. The cleanest public-facing story, but the slowest to update.</p>
+  </div>
+
+  <div class="tradeoffs">
+    <div class="tradeoff-card">
+      <h4>Why this model</h4>
+      <ul>
+        <li>Comprehensive across spending categories — closest to original vision</li>
+        <li>Reference-household framing is intuitive for readers</li>
+        <li>Directly comparable to median wage and minimum wage</li>
+        <li>Borough-level and household-type cuts are possible</li>
+      </ul>
+    </div>
+    <div class="tradeoff-card cons">
+      <h4>Constraints</h4>
+      <ul>
+        <li>Full microdata not available until 2027</li>
+        <li>Severely lagged — annual release, one year behind</li>
+        <li>Healthcare and childcare benchmarks require outside sources</li>
+        <li>National Academies cautions against pure expenditure-share weighting</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi accent">
+      <div class="label">Annual cost, single adult</div>
+      <div class="value">$58,200</div>
+      <div class="delta">$28/hr living wage</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">Annual cost, family of four</div>
+      <div class="value">$112,900</div>
+      <div class="delta">Two working adults</div>
+    </div>
+    <div class="kpi">
+      <div class="label">NYC median household income</div>
+      <div class="value">$79,700</div>
+      <div class="delta">2024 ACS</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">Households below basic-needs</div>
+      <div class="value">41<span class="unit">%</span></div>
+      <div class="delta">Family of four benchmark</div>
+    </div>
+  </div>
+
+  <div class="chart-grid one-col">
+    <div class="chart-card">
+      <h3>Housing and childcare eat more than half the basic-needs budget</h3>
+      <div class="sub">Illustrative annual basic-needs budget, family of four, two working adults, NYC, 2024 dollars</div>
+      <table class="cost-table" style="margin-top:12px">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Share of budget</th>
+            <th class="num">Monthly</th>
+            <th class="num">Annual</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Housing (2BR rent + utilities)</td>
+            <td><div class="bar-cell"><div class="bar" style="width:85%; background: var(--vc-magenta)"></div><span>32%</span></div></td>
+            <td class="num">$3,000</td>
+            <td class="num">$36,000</td>
+          </tr>
+          <tr>
+            <td>Childcare (two children, full-time)</td>
+            <td><div class="bar-cell"><div class="bar" style="width:72%; background: var(--vc-orange)"></div><span>24%</span></div></td>
+            <td class="num">$2,260</td>
+            <td class="num">$27,120</td>
+          </tr>
+          <tr>
+            <td>Food (Thrifty Food Plan × household)</td>
+            <td><div class="bar-cell"><div class="bar" style="width:38%"></div><span>13%</span></div></td>
+            <td class="num">$1,220</td>
+            <td class="num">$14,640</td>
+          </tr>
+          <tr>
+            <td>Taxes (federal, state, local, FICA)</td>
+            <td><div class="bar-cell"><div class="bar" style="width:36%; background: var(--vc-indigo)"></div><span>12%</span></div></td>
+            <td class="num">$1,130</td>
+            <td class="num">$13,560</td>
+          </tr>
+          <tr>
+            <td>Transportation (two MTA passes + one car)</td>
+            <td><div class="bar-cell"><div class="bar" style="width:24%; background: var(--vc-cerulean)"></div><span>8%</span></div></td>
+            <td class="num">$750</td>
+            <td class="num">$9,000</td>
+          </tr>
+          <tr>
+            <td>Healthcare (employer premium share + out-of-pocket)</td>
+            <td><div class="bar-cell"><div class="bar" style="width:21%; background: var(--vc-periwinkle)"></div><span>7%</span></div></td>
+            <td class="num">$660</td>
+            <td class="num">$7,920</td>
+          </tr>
+          <tr>
+            <td>Other essentials (clothing, household, hygiene)</td>
+            <td><div class="bar-cell"><div class="bar" style="width:12%; background: var(--vc-rose)"></div><span>4%</span></div></td>
+            <td class="num">$390</td>
+            <td class="num">$4,680</td>
+          </tr>
+          <tr class="total">
+            <td>Total basic-needs budget</td>
+            <td></td>
+            <td class="num">$9,410</td>
+            <td class="num">$112,920</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="source">Source: Urban Institute Basic Needs Budget methodology applied to NYC; HUD Fair Market Rents; USDA Thrifty Food Plan; MIT Living Wage Calculator (New York County); Center for an Urban Future; BLS Consumer Expenditure Survey NY metro. Figures are 2024 dollars.</div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Basic needs exceed median income in every borough except Manhattan</h3>
+      <div class="sub">Family of four, two working adults, 2024 dollars, by borough</div>
+      <div class="canvas-wrap"><canvas id="chart3a"></canvas></div>
+      <div class="source">Source: Urban Institute Basic Needs methodology applied borough by borough using HUD Small Area Fair Market Rents; ACS 2024 one-year median household income by borough.</div>
+    </div>
+    <div class="chart-card">
+      <h3>The gap between basic needs and earnings has widened since 2019</h3>
+      <div class="sub">Annual basic-needs cost vs NYC median household income, 2019 to 2024</div>
+      <div class="canvas-wrap"><canvas id="chart3b"></canvas></div>
+      <div class="source">Source: Urban Institute Basic Needs methodology; ACS 2019–2024 one-year estimates; BLS CPI NY-NNJ for inflation adjustment.</div>
+    </div>
+  </div>
+
+  <div class="method">
+    <h4>Methodology note</h4>
+    <p>The basic-needs budget sums line items — housing (HUD Fair Market Rent), food (USDA Thrifty Food Plan), childcare (Center for an Urban Future), healthcare (employer-plus-out-of-pocket from MEPS), transportation, taxes, and a modest other category — for reference households, with no savings, eating out, or emergency reserves included.</p>
+    <p>Limitations: the approach reflects the authors' household choices, treats NYC as one geography (not five boroughs), and leans on several national data sources re-weighted to NYC prices. The National Academies recommends category-specific benchmarks over pure expenditure shares, which is the approach shown here. No NYC-only CPI is available for in-year updates, so this index is fundamentally an annual release.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <p>Design exploration for a forthcoming five-borough NYC affordability index. All figures on this page are drawn from public data or prior published estimates and serve as mockup placeholders. Final numbers will depend on the model ultimately chosen and any data-sharing agreements reached.</p>
+  </div>
+</footer>
+
+<script>
+// Tab switching
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    window.scrollTo({ top: document.querySelector('.tabs').offsetTop - 20, behavior: 'smooth' });
+  });
+});
+
+// Chart.js defaults
+Chart.defaults.font.family = '"halyard-text", Inter, sans-serif';
+Chart.defaults.font.weight = '300';
+Chart.defaults.color = '#050507';
+const VC = {
+  black: '#050507', chartreuse: '#dde44c', orange: '#ff7c53',
+  magenta: '#e7466d', indigo: '#394882', cerulean: '#217ebe',
+  periwinkle: '#9b9fbc', charcoal: '#707175', rose: '#cea9be'
+};
+
+// ===== Chart 1a: Material hardship over time =====
+new Chart(document.getElementById('chart1a'), {
+  type: 'line',
+  data: {
+    labels: ['2017','2018','2019','2020','2021','2022','2023','2024'],
+    datasets: [{
+      label: 'Material hardship rate',
+      data: [48, 47, 46, 56, 49, 51, 53, 54],
+      borderColor: VC.magenta,
+      backgroundColor: VC.magenta,
+      tension: 0.25,
+      pointRadius: 4,
+      borderWidth: 3
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { min: 40, max: 60, ticks: { callback: v => v + '%' }, grid: { color: '#eee' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ===== Chart 1b: Hardship by borough =====
+new Chart(document.getElementById('chart1b'), {
+  type: 'bar',
+  data: {
+    labels: ['Bronx','Brooklyn','Manhattan','Queens','Staten Island'],
+    datasets: [{
+      data: [64, 56, 48, 52, 41],
+      backgroundColor: [VC.magenta, VC.orange, VC.periwinkle, VC.orange, VC.cerulean]
+    }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.parsed.x + '%' } } },
+    scales: {
+      x: { ticks: { callback: v => v + '%' }, max: 100, grid: { color: '#eee' } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// ===== Chart 1c: Hardship types =====
+new Chart(document.getElementById('chart1c'), {
+  type: 'bar',
+  data: {
+    labels: ['Housing hardship','Unable to pay bills','Food insecurity','Medical hardship','Severe housing hardship','Utility shutoff'],
+    datasets: [{
+      data: [33, 28, 15, 22, 18, 11],
+      backgroundColor: VC.chartreuse,
+      borderColor: VC.black,
+      borderWidth: 0
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { ticks: { callback: v => v + '%' }, grid: { color: '#eee' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ===== Chart 2a: Rent vs wages index =====
+new Chart(document.getElementById('chart2a'), {
+  type: 'line',
+  data: {
+    labels: ['2019','2020','2021','2022','2023','2024','2025','2026 YTD'],
+    datasets: [
+      { label: 'Manhattan rent', data: [100, 92, 96, 122, 128, 132, 136, 139], borderColor: VC.magenta, backgroundColor: VC.magenta, tension: 0.2, borderWidth: 2.5 },
+      { label: 'Brooklyn rent', data: [100, 94, 102, 118, 123, 128, 133, 138], borderColor: VC.orange, backgroundColor: VC.orange, tension: 0.2, borderWidth: 2.5 },
+      { label: 'Queens rent', data: [100, 95, 99, 112, 118, 122, 128, 132], borderColor: VC.indigo, backgroundColor: VC.indigo, tension: 0.2, borderWidth: 2.5 },
+      { label: 'Bronx rent', data: [100, 97, 101, 108, 113, 118, 122, 125], borderColor: VC.rose, backgroundColor: VC.rose, tension: 0.2, borderWidth: 2.5 },
+      { label: 'Staten Island rent', data: [100, 99, 102, 106, 110, 113, 116, 118], borderColor: VC.periwinkle, backgroundColor: VC.periwinkle, tension: 0.2, borderWidth: 2.5 },
+      { label: 'NYC avg hourly wage', data: [100, 105, 109, 116, 122, 126, 129, 131], borderColor: VC.cerulean, backgroundColor: VC.cerulean, tension: 0.2, borderWidth: 3, borderDash: [5,3] }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } } },
+    scales: {
+      y: { min: 85, grid: { color: '#eee' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ===== Chart 2b: CPI components =====
+new Chart(document.getElementById('chart2b'), {
+  type: 'bar',
+  data: {
+    labels: ['Food at home','Electricity','Shelter','Medical care','Transportation','Apparel','All items'],
+    datasets: [{
+      data: [4.8, 4.2, 3.8, 3.4, 2.1, 1.2, 3.1],
+      backgroundColor: ctx => ctx.dataIndex === 6 ? VC.black : VC.orange
+    }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.parsed.x + '%' } } },
+    scales: {
+      x: { ticks: { callback: v => v + '%' }, grid: { color: '#eee' } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// ===== Chart 2c: Composite index =====
+new Chart(document.getElementById('chart2c'), {
+  type: 'line',
+  data: {
+    labels: ['2019 Q1','Q3','2020 Q1','Q3','2021 Q1','Q3','2022 Q1','Q3','2023 Q1','Q3','2024 Q1','Q3','2025 Q1','Q3','2026 Q1'],
+    datasets: [{
+      label: 'Affordability pressure',
+      data: [100, 101, 98, 96, 99, 108, 118, 129, 138, 146, 152, 158, 161, 165, 168],
+      borderColor: VC.orange,
+      backgroundColor: 'rgba(255,124,83,0.12)',
+      fill: true,
+      tension: 0.3,
+      pointRadius: 3,
+      borderWidth: 3
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { min: 90, grid: { color: '#eee' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ===== Chart 3a: Basic needs vs income by borough =====
+new Chart(document.getElementById('chart3a'), {
+  type: 'bar',
+  data: {
+    labels: ['Bronx','Brooklyn','Queens','Staten Island','Manhattan'],
+    datasets: [
+      { label: 'Basic-needs budget, family of four', data: [95400, 118200, 106800, 102400, 139600], backgroundColor: VC.magenta },
+      { label: 'Borough median household income', data: [47300, 76100, 80200, 94100, 99300], backgroundColor: VC.cerulean }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } } },
+    scales: {
+      y: { ticks: { callback: v => '$' + (v/1000) + 'k' }, grid: { color: '#eee' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ===== Chart 3b: Gap widening over time =====
+new Chart(document.getElementById('chart3b'), {
+  type: 'line',
+  data: {
+    labels: ['2019','2020','2021','2022','2023','2024'],
+    datasets: [
+      { label: 'Basic-needs budget, family of four', data: [92500, 94100, 97800, 105200, 110400, 112900], borderColor: VC.magenta, backgroundColor: VC.magenta, tension: 0.2, borderWidth: 3 },
+      { label: 'NYC median household income', data: [70800, 71200, 72600, 74500, 77300, 79700], borderColor: VC.cerulean, backgroundColor: VC.cerulean, tension: 0.2, borderWidth: 3 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } } },
+    scales: {
+      y: { ticks: { callback: v => '$' + (v/1000) + 'k' }, grid: { color: '#eee' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
