@@ -544,6 +544,23 @@ table.cost-table tr.total td {
 .method p { font-size: 13px; line-height: 1.6; color: var(--vc-black); max-width: 900px; }
 .method p + p { margin-top: 8px; }
 
+/* Data caveat callout */
+.data-caveat {
+  background: #fde5dd;
+  border-left: 4px solid var(--vc-orange);
+  padding: 16px 20px;
+  margin-bottom: 32px;
+  max-width: 920px;
+}
+.data-caveat h4 {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+.data-caveat p { font-size: 13px; line-height: 1.6; }
+
 /* Footer */
 footer {
   background: var(--vc-orange);
@@ -806,7 +823,7 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
       <h3>Asking rents have climbed across all five boroughs, outpacing wages</h3>
       <div class="sub">Indexed change, January 2019 = 100, by borough</div>
       <div class="canvas-wrap"><canvas id="chart2a"></canvas></div>
-      <div class="source">Source: StreetEasy Rent Index by borough; BLS Current Employment Statistics, NYC average hourly earnings.</div>
+      <div class="source">Source: StreetEasy Rent Index by borough; BLS Current Employment Statistics, NYC average hourly earnings. Note: asking rents reflect only vacant, listed units — not what most tenants (including rent-stabilized and NYCHA households) actually pay.</div>
     </div>
     <div class="chart-card">
       <h3>Grocery and utilities are driving the latest inflation read</h3>
@@ -828,7 +845,7 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
   <div class="method">
     <h4>Methodology note</h4>
     <p>Seven indicators are combined into a single pressure score. Rent (StreetEasy) and metro CPI (BLS) get the largest weights because housing and core consumption dominate household budgets. Wages are included as an inverse component: rising wages pull the index down. The NY Fed's Survey of Consumer Expectations contributes a forward-looking signal about households' expected financial position.</p>
-    <p>Tradeoffs made explicit: the metro CPI covers a region larger than the five boroughs; StreetEasy captures new asking rents, not the full stock; weights are the authors' choice and are published alongside every release. An NYC-only CPI is not publicly available, which is the main reason no single official series can answer this question.</p>
+    <p>Tradeoffs made explicit: the metro CPI covers a region larger than the five boroughs; StreetEasy captures new asking rents — the small slice of units that are vacant and listed — not what the city's roughly 2.3 million renter households (including rent-stabilized and NYCHA tenants) actually pay; weights are the authors' choice and are published alongside every release. An NYC-only CPI is not publicly available, which is the main reason no single official series can answer this question.</p>
   </div>
 </section>
 
@@ -1229,6 +1246,11 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
     <p class="dek">One creative synthesis number, updated monthly, entirely from free sources: the median asking rent in each borough divided by the New York City average hourly wage. In January 2024 the citywide answer was 82 hours of work; in May 2026 it is 94 — more than two extra days on the job every month, just for rent.</p>
   </div>
 
+  <div class="data-caveat">
+    <h4>What asking rent is — and is not</h4>
+    <p>Asking rent is <strong>not what New Yorkers pay</strong>. It is the advertised price of the small slice of apartments that happen to be vacant and listed in a given month. Most of the city's roughly 2.3 million rental households — including about 1 million rent-stabilized units, more than 150,000 NYCHA apartments and every sitting tenant with a below-market lease — pay far less than these figures. Data on what occupied units actually rent for (the Housing and Vacancy Survey, American Community Survey and Rent Guidelines Board studies) paint a much more accurate picture of rents, but arrive with a lag of a year or more. Asking rent is used here for one reason only: it moves monthly, so it shows the direction of the market in near real time.</p>
+  </div>
+
   <div class="tradeoffs">
     <div class="tradeoff-card">
       <h4>Why this model</h4>
@@ -1299,7 +1321,7 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
 
   <div class="method">
     <h4>Methodology note</h4>
-    <p>Rent clock = StreetEasy median asking rent (all unit sizes, by borough, monthly) divided by BLS New York City average hourly earnings (total private). Both series are free and published monthly; StreetEasy's CSV was downloaded July 1, 2026 and runs through May 2026. Asking rent measures the price of moving, not the average rent paid — that makes it the right series for tracking market direction in near real time, and the wrong one for describing the typical tenant's burden. A future refinement could swap in median renter earnings from the American Community Survey annually to calibrate the level while StreetEasy provides the monthly movement.</p>
+    <p>Rent clock = StreetEasy median asking rent (all unit sizes, by borough, monthly) divided by BLS New York City average hourly earnings (total private). Both series are free and published monthly; StreetEasy's CSV was downloaded July 1, 2026 and runs through May 2026. Asking rent measures the price of moving, not the average rent paid — that makes it the right series for tracking market direction in near real time, and the wrong one for describing the typical tenant's burden. The lagged-but-accurate sources on what occupied units rent for are the NYC Housing and Vacancy Survey (every ~3 years), the American Community Survey (annual, ~1-year lag) and the Rent Guidelines Board's annual Income and Expense studies; a mature version of this index would anchor its level to those and use StreetEasy only for monthly movement, alongside median renter earnings from the ACS in place of the average wage.</p>
   </div>
 </section>
 
