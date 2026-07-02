@@ -267,6 +267,20 @@ html, body { font-family: var(--font-primary); font-weight: 300; color: var(--vc
   font-size: 11px;
 }
 .tab.active .num { background: var(--vc-orange); color: var(--vc-white); }
+.tab .num.live { background: var(--vc-cerulean); color: var(--vc-white); }
+.tab.active .num.live { background: var(--vc-black); }
+.live-badge {
+  display: inline-block;
+  background: var(--vc-cerulean);
+  color: var(--vc-white);
+  font-weight: 900;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
 
 /* Panels */
 .panel { display: none; max-width: 1200px; margin: 0 auto; padding: 48px 40px 80px; }
@@ -411,6 +425,7 @@ html, body { font-family: var(--font-primary); font-weight: 300; color: var(--vc
   color: var(--vc-charcoal);
   line-height: 1.4;
 }
+.chart-card .source a { color: inherit; text-decoration: underline; }
 
 /* Table */
 table.cost-table {
@@ -557,9 +572,9 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
 </header>
 
 <section class="hero">
-  <div class="kicker">Methodology mockup · five models</div>
+  <div class="kicker">Methodology mockup · eight models</div>
   <h1>What could a five-borough affordability index actually measure?</h1>
-  <p class="dek">Five different approaches to tracking whether the Bronx, Brooklyn, Manhattan, Queens, and Staten Island are getting more or less affordable — each with its own cadence, data source, and tradeoff between timeliness and depth. All five are scoped to the five boroughs only; design mockups built on real, publicly available data to pressure-test what each model would look like in practice.</p>
+  <p class="dek">Eight approaches to tracking whether the Bronx, Brooklyn, Manhattan, Queens, and Staten Island are getting more or less affordable. Models 01–05 are methodology concepts with illustrative numbers. Models 06–08 are working prototypes built entirely on real data fetched July 1, 2026 — high-frequency series that update monthly and can already measure the Mamdani era as it happens.</p>
 </section>
 
 <section class="landscape">
@@ -633,8 +648,8 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
 
 <div class="placeholder-notice">
   <div class="inner">
-    <span class="tag">Not actual numbers</span>
-    <p>Every KPI tile, chart value, and composite score in the five model mockups below is an <strong>illustrative placeholder</strong>, not a real reading from the source. The organizations, methodologies, data sources, cadences, and links above are accurate — but the specific figures are meant only to show what each model would look like once built. Real numbers will be pulled from each source before publication.</p>
+    <span class="tag">Read this first</span>
+    <p>Every KPI tile and chart value in <strong>Models 01–05</strong> is an <strong>illustrative placeholder</strong>, not a real reading from the source. The organizations, methodologies, cadences, and links above are accurate, but those figures only show what each model would look like once built. <strong>Models 06–08 are different: every number in them is real</strong>, fetched July 1, 2026 from the Bureau of Labor Statistics, StreetEasy, the Taxi and Limousine Commission, and the Metropolitan Transportation Authority.</p>
   </div>
 </div>
 
@@ -644,6 +659,9 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
   <button class="tab" data-tab="p3" role="tab"><span class="num">03</span>Minimum cost of living</button>
   <button class="tab" data-tab="p4" role="tab"><span class="num">04</span>MIT living wage (NYC)</button>
   <button class="tab" data-tab="p5" role="tab"><span class="num">05</span>EPI family budget (NYC)</button>
+  <button class="tab" data-tab="p6" role="tab"><span class="num live">06</span>Real paycheck index</button>
+  <button class="tab" data-tab="p7" role="tab"><span class="num live">07</span>The rent clock</button>
+  <button class="tab" data-tab="p8" role="tab"><span class="num live">08</span>Everyday New York index</button>
 </nav>
 
 <!-- ========================= MODEL 1 ========================= -->
@@ -1122,6 +1140,252 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
   </div>
 </section>
 
+<!-- ========================= MODEL 6: Real paycheck index (REAL DATA) ========================= -->
+<section class="panel" id="p6">
+  <div class="panel-header">
+    <div class="kicker">Model 06 · monthly · official series only <span class="live-badge">Real data</span></div>
+    <h2>The real paycheck index: are wages keeping up with prices?</h2>
+    <p class="dek">The simplest honest affordability measure that updates every month: New York City average hourly earnings divided by area consumer prices. When the line falls, the average paycheck buys less. Every number below is real, fetched July 1, 2026, with data through May 2026.</p>
+  </div>
+
+  <div class="tradeoffs">
+    <div class="tradeoff-card">
+      <h4>Why this model</h4>
+      <ul>
+        <li>Updates monthly, about three weeks after the reference month</li>
+        <li>Both sides of the ledger: what New Yorkers earn and what they pay</li>
+        <li>Wages and unemployment are city-specific BLS series</li>
+        <li>Zero data cost — all free federal sources</li>
+      </ul>
+    </div>
+    <div class="tradeoff-card cons">
+      <h4>Constraints</h4>
+      <ul>
+        <li>CPI covers the NY-Newark-Jersey City metro, not just the five boroughs</li>
+        <li>Average earnings can be skewed by high-wage sectors like finance</li>
+        <li>Says nothing about the distribution — who specifically is squeezed</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi accent">
+      <div class="label">Real wage since Mamdani took office</div>
+      <div class="value">−3.4<span class="unit">%</span></div>
+      <div class="delta up">Dec 2025 → May 2026</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">NY area inflation</div>
+      <div class="value">5.1<span class="unit">%</span></div>
+      <div class="delta">12 months through May 2026</div>
+    </div>
+    <div class="kpi">
+      <div class="label">NYC average hourly wage</div>
+      <div class="value">$44.60</div>
+      <div class="delta">▲ 2.7% year over year</div>
+    </div>
+    <div class="kpi good">
+      <div class="label">NYC unemployment</div>
+      <div class="value">4.8<span class="unit">%</span></div>
+      <div class="delta down">▼ from 5.4% in Dec 2025</div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Prices have pulled away from paychecks since mid-2025</h3>
+      <div class="sub">NYC average hourly earnings vs NY-area consumer prices, January 2024 = 100</div>
+      <div class="canvas-wrap"><canvas id="chart6a"></canvas></div>
+      <div class="source">Source: <a href="https://www.bls.gov/regions/new-york-new-jersey/" target="_blank">BLS</a> Current Employment Statistics, New York City average hourly earnings, total private (SMU36935610500000003); CPI-U, NY-Newark-Jersey City (CUURS12ASA0). Data through May 2026.</div>
+    </div>
+    <div class="chart-card">
+      <h3>The average New York paycheck buys 3.4% less than in December</h3>
+      <div class="sub">Real (inflation-adjusted) average hourly wage, January 2024 = 100</div>
+      <div class="canvas-wrap"><canvas id="chart6b"></canvas></div>
+      <div class="source">Source: BLS; NYC average hourly earnings deflated by NY-area CPI-U. Data through May 2026.</div>
+    </div>
+  </div>
+
+  <div class="chart-grid one-col">
+    <div class="chart-card">
+      <h3>Shelter and groceries are running hot; restaurant inflation is cooler</h3>
+      <div class="sub">12-month percent change through May 2026, NY-Newark-Jersey City CPI-U</div>
+      <div class="canvas-wrap" style="height:250px"><canvas id="chart6c"></canvas></div>
+      <div class="source">Source: BLS CPI-U, NY-Newark-Jersey City metro area, May 2025 to May 2026, computed from published index levels.</div>
+    </div>
+  </div>
+
+  <div class="method">
+    <h4>Methodology note</h4>
+    <p>Real wage index = NYC average hourly earnings (BLS Current Employment Statistics, total private, series SMU36935610500000003 — five boroughs only) divided by CPI-U for the NY-Newark-Jersey City metro area (series CUURS12ASA0), rebased to January 2024 = 100. Unemployment is the BLS Local Area Unemployment Statistics rate for New York City proper (LAUCT365100000000003). The one geographic compromise: no NYC-only CPI exists, so the price side includes the suburbs and northern New Jersey. All series fetched from the BLS public API on July 1, 2026; latest observation May 2026.</p>
+  </div>
+</section>
+
+<!-- ========================= MODEL 7: Rent clock (REAL DATA) ========================= -->
+<section class="panel" id="p7">
+  <div class="panel-header">
+    <div class="kicker">Model 07 · monthly · borough-level <span class="live-badge">Real data</span></div>
+    <h2>The rent clock: how many hours of work does the median apartment cost?</h2>
+    <p class="dek">One creative synthesis number, updated monthly, entirely from free sources: the median asking rent in each borough divided by the New York City average hourly wage. In January 2024 the citywide answer was 82 hours of work; in May 2026 it is 94 — more than two extra days on the job every month, just for rent.</p>
+  </div>
+
+  <div class="tradeoffs">
+    <div class="tradeoff-card">
+      <h4>Why this model</h4>
+      <ul>
+        <li>Truly five-borough: StreetEasy publishes each borough monthly</li>
+        <li>"Hours of work for rent" is instantly understandable</li>
+        <li>Combines a price and a wage in one number — affordability, not just cost</li>
+        <li>Publishes about five weeks after the close of each month</li>
+      </ul>
+    </div>
+    <div class="tradeoff-card cons">
+      <h4>Constraints</h4>
+      <ul>
+        <li>Asking rents cover units on the market, not what sitting tenants pay</li>
+        <li>Average wage overstates what a typical renter earns</li>
+        <li>Staten Island's small listing volume makes its line jumpy</li>
+        <li>StreetEasy is a private source and could change its publishing</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi accent">
+      <div class="label">Hours of work for the median NYC rent</div>
+      <div class="value">94<span class="unit">hrs</span></div>
+      <div class="delta up">▲ from 87 in Dec 2025, 82 in Jan 2024</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">NYC median asking rent</div>
+      <div class="value">$4,199</div>
+      <div class="delta up">▲ 7.3% year over year</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">Most expensive: Manhattan</div>
+      <div class="value">110<span class="unit">hrs</span></div>
+      <div class="delta">$4,927 median asking rent</div>
+    </div>
+    <div class="kpi good">
+      <div class="label">Least expensive: the Bronx</div>
+      <div class="value">66<span class="unit">hrs</span></div>
+      <div class="delta down">$2,924 · rent down 3.3% YoY</div>
+    </div>
+  </div>
+
+  <div class="chart-grid one-col">
+    <div class="chart-card">
+      <h3>Every borough but the Bronx demands more work-hours for rent than when Mamdani took office</h3>
+      <div class="sub">Median asking rent ÷ NYC average hourly wage, monthly, by borough</div>
+      <div class="canvas-wrap" style="height:300px"><canvas id="chart7a"></canvas></div>
+      <div class="source">Source: <a href="https://streeteasy.com/blog/data-dashboard/" target="_blank">StreetEasy Data Dashboard</a>, median asking rent, all unit sizes; BLS NYC average hourly earnings. Data through May 2026.</div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Asking rents are up in four boroughs, down in the Bronx</h3>
+      <div class="sub">Change in median asking rent, May 2025 to May 2026</div>
+      <div class="canvas-wrap"><canvas id="chart7b"></canvas></div>
+      <div class="source">Source: StreetEasy Data Dashboard. Staten Island series is volatile month to month owing to low listing volume.</div>
+    </div>
+    <div class="chart-card">
+      <h3>The citywide median asking rent crossed $4,000 in early 2026</h3>
+      <div class="sub">Median asking rent by borough, monthly, dollars</div>
+      <div class="canvas-wrap"><canvas id="chart7c"></canvas></div>
+      <div class="source">Source: StreetEasy Data Dashboard, medianAskingRent series, downloaded July 1, 2026.</div>
+    </div>
+  </div>
+
+  <div class="method">
+    <h4>Methodology note</h4>
+    <p>Rent clock = StreetEasy median asking rent (all unit sizes, by borough, monthly) divided by BLS New York City average hourly earnings (total private). Both series are free and published monthly; StreetEasy's CSV was downloaded July 1, 2026 and runs through May 2026. Asking rent measures the price of moving, not the average rent paid — that makes it the right series for tracking market direction in near real time, and the wrong one for describing the typical tenant's burden. A future refinement could swap in median renter earnings from the American Community Survey annually to calibrate the level while StreetEasy provides the monthly movement.</p>
+  </div>
+</section>
+
+<!-- ========================= MODEL 8: Everyday NY index (REAL DATA) ========================= -->
+<section class="panel" id="p8">
+  <div class="panel-header">
+    <div class="kicker">Model 08 · monthly · the prices New Yorkers actually meet <span class="live-badge">Real data</span></div>
+    <h2>The everyday New York index: the subway, the cab, the groceries, the night out</h2>
+    <p class="dek">A basket of prices a New Yorker touches in an ordinary week, each from a real, regularly updated source: the subway fare, the average yellow-cab trip, a gallon of gas, groceries and restaurant meals. Indexed together, they show the cost of an ordinary New York life rising 11% since January 2024 — with the sharpest jumps arriving in 2026.</p>
+  </div>
+
+  <div class="tradeoffs">
+    <div class="tradeoff-card">
+      <h4>Why this model</h4>
+      <ul>
+        <li>Every item is a price readers recognize from their own lives</li>
+        <li>Taxi and subway data are NYC-only and official</li>
+        <li>Updates monthly; the fare changes the day the MTA board votes</li>
+        <li>Extensible: a field-collected slice-of-pizza and bacon-egg-and-cheese price could be added by us</li>
+      </ul>
+    </div>
+    <div class="tradeoff-card cons">
+      <h4>Constraints</h4>
+      <ul>
+        <li>Gas, groceries and restaurant series are metro-area, not city-only</li>
+        <li>Excludes the biggest cost of all — rent (Model 07's job)</li>
+        <li>Equal weighting is a choice; a subway ride matters more than a cab to most households</li>
+        <li>Taxi average fare mixes price and trip-length changes</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="label">Subway and bus fare</div>
+      <div class="value">$3.00</div>
+      <div class="delta up">▲ from $2.90 on Jan 4, 2026</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">Average yellow-cab trip</div>
+      <div class="value">$27.35</div>
+      <div class="delta up">▲ 13.8% year over year</div>
+    </div>
+    <div class="kpi warn">
+      <div class="label">Gallon of gas, NY area</div>
+      <div class="value">$4.55</div>
+      <div class="delta up">▲ 47.6% year over year</div>
+    </div>
+    <div class="kpi accent">
+      <div class="label">Grocery inflation, NY area</div>
+      <div class="value">4.0<span class="unit">%</span></div>
+      <div class="delta">12 months through May 2026</div>
+    </div>
+  </div>
+
+  <div class="chart-grid one-col">
+    <div class="chart-card">
+      <h3>Gas and cab fares are the runaway items in the everyday basket</h3>
+      <div class="sub">Five everyday prices, January 2024 = 100</div>
+      <div class="canvas-wrap" style="height:300px"><canvas id="chart8a"></canvas></div>
+      <div class="source">Source: <a href="https://www.mta.info/fares-tolls/subway-bus" target="_blank">MTA</a> (base fare); <a href="https://data.cityofnewyork.us/Transportation/TLC-Industry-Indicators/v6kb-cqej" target="_blank">TLC Industry Indicators</a> (farebox per trip, yellow cabs); BLS average price of regular gasoline, NY-Newark-Jersey City (APUS12A74714); BLS CPI food at home and food away from home, NY metro. Data through May 2026.</div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>The everyday basket is up 11% since January 2024</h3>
+      <div class="sub">Equal-weighted average of the five everyday prices, January 2024 = 100</div>
+      <div class="canvas-wrap"><canvas id="chart8b"></canvas></div>
+      <div class="source">Source: Equal-weighted composite of the five series above. Weighting is a design choice shown transparently; expenditure weights are an alternative.</div>
+    </div>
+    <div class="chart-card">
+      <h3>The average yellow-cab fare jumped when 2026 began</h3>
+      <div class="sub">Farebox per trip, yellow taxis, monthly, dollars</div>
+      <div class="canvas-wrap"><canvas id="chart8c"></canvas></div>
+      <div class="source">Source: TLC Industry Indicators, farebox per day ÷ trips per day, yellow medallion cabs. Includes surcharges and tolls, not credit-card tips. Data through May 2026.</div>
+    </div>
+  </div>
+
+  <div class="method">
+    <h4>Methodology note</h4>
+    <p>Five components, all real: (1) MTA base subway/bus fare — administered price, $2.90 through December 2025, $3.00 effective January 4, 2026; (2) average yellow-cab fare — TLC Industry Indicators farebox per day divided by trips per day, five boroughs only; (3) average price of a gallon of regular gasoline, NY-Newark-Jersey City metro (BLS); (4) CPI food at home, NY metro (BLS); (5) CPI food away from home, NY metro (BLS). Each is indexed to January 2024 = 100 and averaged with equal weights. All fetched July 1, 2026; latest data May 2026.</p>
+    <p>Proposed extension, no invented numbers shown: a Vital City field-collected mini-basket — the price of a plain slice, a bacon-egg-and-cheese and a bodega coffee at a fixed panel of shops across the five boroughs, collected monthly. That would add the one thing no federal series provides: a true five-borough street price. The famous "pizza principle" (a slice tends to cost about the same as a subway ride) would become testable data.</p>
+  </div>
+</section>
+
 <footer>
   <div class="inner">
     <p>Design exploration for a forthcoming five-borough NYC affordability index. All figures on this page are drawn from public data or prior published estimates and serve as mockup placeholders. Final numbers will depend on the model ultimately chosen and any data-sharing agreements reached.</p>
@@ -1135,7 +1399,11 @@ document.querySelectorAll('.tab').forEach(btn => {
     document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById(btn.dataset.tab).classList.add('active');
+    const panel = document.getElementById(btn.dataset.tab);
+    panel.classList.add('active');
+    requestAnimationFrame(() => {
+      panel.querySelectorAll('canvas').forEach(cv => { const ch = Chart.getChart(cv); if (ch) ch.resize(); });
+    });
     window.scrollTo({ top: document.querySelector('.tabs').offsetTop - 20, behavior: 'smooth' });
   });
 });
@@ -1434,6 +1702,184 @@ new Chart(document.getElementById('chart5c'), {
       x: { grid: { display: false } }
     }
   }
+});
+
+// =====================================================================
+// MODELS 06–08: REAL DATA, fetched 2026-07-01 (BLS API, StreetEasy CSV,
+// TLC Industry Indicators via NYC Open Data, MTA published fares)
+// =====================================================================
+const RD = {"months":["2024-01","2024-02","2024-03","2024-04","2024-05","2024-06","2024-07","2024-08","2024-09","2024-10","2024-11","2024-12","2025-01","2025-02","2025-03","2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05"],"cpi":[328.01,328.61,329.83,331.27,332.63,334.78,335.64,336.53,337.89,338.17,338.54,338.61,341.14,342.33,342.51,344.05,343.89,346.33,346.38,347.27,348.1,null,348.62,350.0,350.95,353.37,356.17,359.77,361.36],"foodHome":[317.85,315.93,315.21,318.32,315.82,318.22,316.68,316.52,320.25,319.67,320.69,321.97,322.05,324.2,325.52,321.7,324.13,323.98,327.7,327.65,331.2,null,333.32,331.68,332.7,335.21,335.93,340.83,336.96],"foodAway":[378.69,378.12,378.34,379.42,381.08,381.96,381.68,382.16,382.76,383.25,385.13,387.58,387.49,388.88,389.65,390.87,393.43,393.86,394.67,396.75,397.0,null,398.73,399.69,400.89,402.53,402.85,404.11,406.17],"shelter":[444.19,445.47,447.12,448.64,453.98,455.64,457.68,460.57,462.68,464.02,465.19,466.67,468.31,470.26,470.49,473.4,474.44,475.89,475.83,479.0,479.59,null,481.08,486.06,486.34,488.4,488.89,492.65,497.29],"gasCpi":[256.61,259.75,265.49,280.33,290.34,281.05,282.39,273.42,256.54,245.02,241.96,242.06,246.23,247.32,242.94,243.32,245.3,249.17,250.22,250.16,256.2,246.09,245.85,240.32,234.54,236.66,287.23,325.87,360.07],"wage":[42.5,42.33,42.11,41.99,42.02,43.09,42.11,42.02,43.05,42.61,42.6,43.46,42.59,43.37,42.68,43.2,43.43,44.15,43.7,43.63,43.9,43.96,44.93,44.74,45.13,46.1,45.96,45.03,44.6],"gasPrice":[3.25,3.29,3.37,3.56,3.69,3.57,3.59,3.47,3.24,3.09,3.05,3.05,3.1,3.11,3.05,3.06,3.08,3.14,3.15,3.16,3.24,3.1,3.09,3.02,2.93,2.96,3.62,4.11,4.55],"unemp":[4.7,4.9,4.7,4.5,4.7,5.2,5.9,5.8,4.9,5.1,5.0,4.6,4.8,4.7,4.7,4.6,4.7,5.2,5.9,6.0,5.9,null,5.6,5.4,5.5,6.0,4.9,4.8,4.8],"taxi":[23.42,23.27,23.88,24.2,25.01,24.64,24.75,24.92,25.19,24.96,24.29,24.9,22.61,22.26,23.4,23.59,24.03,24.64,24.1,23.56,24.76,23.78,21.38,27.96,26.39,27.36,27.02,26.76,27.35],"fare":[2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,2.9,3.0,3.0,3.0,3.0,3.0],"rents":{"Bronx":[2600,2624,2650,2750,2900,2900,2858,2865,2900,2925,2850,2846,2875,2800,2875,3000,3025,3050,3000,3060,3060,3100,3125,3080,2900,3000,2900,2950,2924],"Brooklyn":[3300,3340,3395,3495,3500,3520.5,3591,3600,3550,3500,3465,3400,3449,3499,3500,3600,3650,3750,3800,3850,3800,3775,3699,3665,3650,3750,3750,3850,3895],"Manhattan":[4200,4250,4295,4395,4403,4395,4378.5,4315,4270,4250,4212,4300,4350,4395,4421,4500,4595,4700,4700,4700,4600,4600,4550,4565,4600,4700,4750,4872,4927],"NYC":[3500,3555,3600,3705,3799,3800,3800,3800,3725,3650,3600,3600,3600,3650,3700,3850,3913.5,4000,4036,4033,3995,3950,3865,3884,3900,3950,3995,4125,4199],"Queens":[2850,2950,2970,2999,3050,3090,3150,3131,3000,3000,3000,2999,3000,3000,3000,3100,3150,3200,3375,3305,3210,3200,3200,3200,3200,3150,3100,3200,3350],"Staten Island":[2597.5,2500,2500,2562.5,2700,2700,2700,2700,2850,2750,2700,2400,2475,2772.5,2825,2815,2797,3125,3000,3000,3062.5,3200,3300,3295,2850,2870,2864.5,3265,3125]}};
+
+const MLBL = RD.months.map(m => {
+  const [y, mo] = m.split('-');
+  return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+mo-1] + " '" + y.slice(2);
+});
+const iJan26 = RD.months.indexOf('2026-01');
+const idx100 = s => s.map(v => v == null ? null : +(v / s[0] * 100).toFixed(2));
+
+// Dotted vertical marker: Mamdani takes office (Jan 2026)
+const mamdaniLine = {
+  id: 'mamdani',
+  afterDatasetsDraw(chart, args, opts) {
+    if (!opts || !opts.enabled) return;
+    const px = chart.scales.x.getPixelForValue(iJan26);
+    const { top, bottom } = chart.chartArea;
+    const c = chart.ctx;
+    c.save();
+    c.strokeStyle = '#050507'; c.setLineDash([4,3]); c.lineWidth = 1;
+    c.beginPath(); c.moveTo(px, top); c.lineTo(px, bottom); c.stroke();
+    c.setLineDash([]);
+    c.translate(px - 5, top + 4); c.rotate(Math.PI/2);
+    c.fillStyle = '#707175'; c.font = "10px 'halyard-text', sans-serif";
+    c.fillText('Mamdani takes office', 0, 0);
+    c.restore();
+  }
+};
+Chart.register(mamdaniLine);
+
+// ===== Chart 6a: wage vs CPI indexed =====
+new Chart(document.getElementById('chart6a'), {
+  type: 'line',
+  data: { labels: MLBL, datasets: [
+    { label: 'Consumer prices (NY area)', data: idx100(RD.cpi), borderColor: VC.orange, backgroundColor: VC.orange, borderWidth: 3, pointRadius: 0, tension: 0.2, spanGaps: true },
+    { label: 'NYC average hourly wage', data: idx100(RD.wage), borderColor: VC.cerulean, backgroundColor: VC.cerulean, borderWidth: 3, pointRadius: 0, tension: 0.2 }
+  ]},
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } }, mamdani: { enabled: true } },
+    scales: { y: { grid: { color: '#eee' } }, x: { grid: { display: false }, ticks: { maxTicksLimit: 10 } } } }
+});
+
+// ===== Chart 6b: real wage =====
+new Chart(document.getElementById('chart6b'), {
+  type: 'line',
+  data: { labels: MLBL, datasets: [{
+    label: 'Real wage', data: RD.wage.map((w,i) => (w && RD.cpi[i]) ? +((w/RD.cpi[i]) / (RD.wage[0]/RD.cpi[0]) * 100).toFixed(2) : null),
+    borderColor: VC.magenta, backgroundColor: 'rgba(231,70,109,0.10)', fill: true, borderWidth: 3, pointRadius: 0, tension: 0.2, spanGaps: true
+  }]},
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, mamdani: { enabled: true } },
+    scales: { y: { grid: { color: '#eee' } }, x: { grid: { display: false }, ticks: { maxTicksLimit: 10 } } } }
+});
+
+// ===== Chart 6c: CPI components YoY =====
+(() => {
+  const iL = RD.months.indexOf('2026-05'), iP = RD.months.indexOf('2025-05');
+  const yoy = s => +((s[iL]/s[iP]-1)*100).toFixed(1);
+  const comps = [
+    ['Gasoline', yoy(RD.gasCpi), VC.magenta],
+    ['All items', yoy(RD.cpi), VC.black],
+    ['Shelter', yoy(RD.shelter), VC.orange],
+    ['Food at home', yoy(RD.foodHome), VC.orange],
+    ['Food away from home', yoy(RD.foodAway), VC.orange]
+  ].sort((a,b) => b[1]-a[1]);
+  new Chart(document.getElementById('chart6c'), {
+    type: 'bar',
+    data: { labels: comps.map(c=>c[0]), datasets: [{ data: comps.map(c=>c[1]), backgroundColor: comps.map(c=>c[2]) }] },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.parsed.x + '%' } } },
+      scales: { x: { ticks: { callback: v => v + '%' }, grid: { color: '#eee' } }, y: { grid: { display: false } } } }
+  });
+})();
+
+// ===== Chart 7a: hours of work for rent, by borough =====
+(() => {
+  const colors = { Manhattan: VC.magenta, Brooklyn: VC.orange, Queens: VC.indigo, Bronx: VC.cerulean, 'Staten Island': VC.periwinkle, NYC: VC.black };
+  const ds = ['Manhattan','Brooklyn','Queens','Bronx','Staten Island','NYC'].map(b => ({
+    label: b, data: RD.rents[b].map((r,i) => (r && RD.wage[i]) ? +(r/RD.wage[i]).toFixed(1) : null),
+    borderColor: colors[b], backgroundColor: colors[b], borderWidth: b==='NYC'?3.5:2, pointRadius: 0, tension: 0.25,
+    borderDash: b==='NYC'?[6,3]:[]
+  }));
+  new Chart(document.getElementById('chart7a'), {
+    type: 'line', data: { labels: MLBL, datasets: ds },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } }, mamdani: { enabled: true },
+        tooltip: { callbacks: { label: c => c.dataset.label + ': ' + c.parsed.y + ' hrs' } } },
+      scales: { y: { title: { display: true, text: 'hours of work at NYC average wage', font: { size: 10 } }, grid: { color: '#eee' } },
+        x: { grid: { display: false }, ticks: { maxTicksLimit: 10 } } } }
+  });
+})();
+
+// ===== Chart 7b: rent YoY by borough =====
+(() => {
+  const iL = RD.months.indexOf('2026-05'), iP = RD.months.indexOf('2025-05');
+  const rows = ['Staten Island','NYC','Manhattan','Brooklyn','Queens','Bronx']
+    .map(b => [b, +((RD.rents[b][iL]/RD.rents[b][iP]-1)*100).toFixed(1)])
+    .sort((a,b) => b[1]-a[1]);
+  new Chart(document.getElementById('chart7b'), {
+    type: 'bar',
+    data: { labels: rows.map(r=>r[0]), datasets: [{ data: rows.map(r=>r[1]),
+      backgroundColor: rows.map(r => r[0]==='NYC' ? VC.black : (r[1] < 0 ? VC.cerulean : VC.orange)) }] },
+    options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.parsed.x + '%' } } },
+      scales: { x: { ticks: { callback: v => v + '%' }, grid: { color: '#eee' } }, y: { grid: { display: false } } } }
+  });
+})();
+
+// ===== Chart 7c: median asking rent by borough =====
+(() => {
+  const colors = { Manhattan: VC.magenta, Brooklyn: VC.orange, Queens: VC.indigo, Bronx: VC.cerulean, 'Staten Island': VC.periwinkle, NYC: VC.black };
+  const ds = ['Manhattan','Brooklyn','Queens','Bronx','Staten Island','NYC'].map(b => ({
+    label: b, data: RD.rents[b], borderColor: colors[b], backgroundColor: colors[b],
+    borderWidth: b==='NYC'?3.5:2, pointRadius: 0, tension: 0.25, borderDash: b==='NYC'?[6,3]:[]
+  }));
+  new Chart(document.getElementById('chart7c'), {
+    type: 'line', data: { labels: MLBL, datasets: ds },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }, mamdani: { enabled: true },
+        tooltip: { callbacks: { label: c => c.dataset.label + ': $' + c.parsed.y.toLocaleString() } } },
+      scales: { y: { ticks: { callback: v => '$' + (v/1000).toFixed(1) + 'k' }, grid: { color: '#eee' } },
+        x: { grid: { display: false }, ticks: { maxTicksLimit: 10 } } } }
+  });
+})();
+
+// ===== Chart 8a: everyday basket components =====
+(() => {
+  const items = [
+    ['Gallon of gas', RD.gasPrice, VC.magenta],
+    ['Average yellow-cab trip', RD.taxi, VC.orange],
+    ['Restaurant meals (CPI)', RD.foodAway, VC.indigo],
+    ['Groceries (CPI)', RD.foodHome, VC.cerulean],
+    ['Subway fare', RD.fare, VC.black]
+  ];
+  new Chart(document.getElementById('chart8a'), {
+    type: 'line',
+    data: { labels: MLBL, datasets: items.map(([l,s,c]) => ({
+      label: l, data: idx100(s), borderColor: c, backgroundColor: c, borderWidth: 2.5, pointRadius: 0, tension: 0.2, spanGaps: true,
+      stepped: l==='Subway fare'
+    })) },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } }, mamdani: { enabled: true } },
+      scales: { y: { grid: { color: '#eee' } }, x: { grid: { display: false }, ticks: { maxTicksLimit: 10 } } } }
+  });
+})();
+
+// ===== Chart 8b: everyday composite =====
+(() => {
+  const series = [RD.fare, RD.taxi, RD.gasPrice, RD.foodHome, RD.foodAway].map(idx100);
+  const comp = RD.months.map((_, i) => {
+    const vals = series.map(s => s[i]).filter(v => v != null);
+    return vals.length === series.length ? +(vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(2) : null;
+  });
+  new Chart(document.getElementById('chart8b'), {
+    type: 'line',
+    data: { labels: MLBL, datasets: [{ data: comp, borderColor: VC.orange, backgroundColor: 'rgba(255,124,83,0.12)',
+      fill: true, borderWidth: 3, pointRadius: 0, tension: 0.25, spanGaps: true }] },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, mamdani: { enabled: true } },
+      scales: { y: { grid: { color: '#eee' } }, x: { grid: { display: false }, ticks: { maxTicksLimit: 10 } } } }
+  });
+})();
+
+// ===== Chart 8c: taxi average fare =====
+new Chart(document.getElementById('chart8c'), {
+  type: 'line',
+  data: { labels: MLBL, datasets: [{ data: RD.taxi, borderColor: VC.orange, backgroundColor: VC.orange,
+    borderWidth: 3, pointRadius: 2, tension: 0.2 }] },
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, mamdani: { enabled: true },
+      tooltip: { callbacks: { label: c => '$' + c.parsed.y.toFixed(2) } } },
+    scales: { y: { ticks: { callback: v => '$' + v }, grid: { color: '#eee' } },
+      x: { grid: { display: false }, ticks: { maxTicksLimit: 10 } } } }
 });
 
 // ===== Chart 3b: Gap widening over time =====
