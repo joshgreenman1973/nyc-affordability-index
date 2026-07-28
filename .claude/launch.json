@@ -4,7 +4,7 @@
     {
       "name": "affordability",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8731", "--directory", "/Users/joshgreenman/Experiments/.claude/worktrees/cranky-cori-70ebf0/nyc-affordability-index"],
+      "runtimeArgs": ["-m", "http.server", "8731", "--directory", "/Users/joshgreenman/Experiments/nyc-affordability-index"],
       "port": 8731
     }
   ]

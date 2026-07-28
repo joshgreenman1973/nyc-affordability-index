@@ -1071,7 +1071,7 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
   <div class="method">
     <h4>Methodology note</h4>
     <p>MIT's Living Wage Calculator follows a bottom-up approach similar to the Urban Institute's basic-needs budget, but produces an hourly wage rather than an annual total. Housing uses HUD Fair Market Rents; food uses USDA's low-cost plan; childcare uses state-average provider costs; healthcare blends MEPS premiums with out-of-pocket averages; transportation uses a cost-per-mile from the BLS Consumer Expenditure Survey. Taxes are modeled so the wage nets to the required budget.</p>
-    <p>As an affordability index, MIT's value is that it is already borough-specific, already annual, and already published — it can be pulled the day it updates. Its limitation is that it is a wage benchmark, not a measure of whether New Yorkers are actually earning it. Pairing MIT's living wage with wage distributions from the Quarterly Census of Employment and Wages would produce a "share of NYC jobs paying below a living wage" metric that is both scorable and publishable annually.</p>
+    <p>As an affordability index, MIT's value is that it is already borough-specific, already annual, and already published — it can be pulled the day it updates. Its limitation is that it is a wage benchmark, not a measure of whether New Yorkers are actually earning it. Turning it into a "share of New Yorkers earning below a living wage" metric would require pairing it with an earnings distribution — a step to take carefully, since the available earnings sources run on different cadences and vintages than the monthly series used elsewhere on this page. See Model 06 on why this index sticks to one earnings series.</p>
   </div>
 </section>
 
@@ -1188,14 +1188,14 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
 
   <div class="kpi-row">
     <div class="kpi accent">
-      <div class="label">Real wage since Mamdani took office</div>
-      <div class="value">−3.4<span class="unit">%</span></div>
-      <div class="delta up">Dec 2025 → May 2026</div>
+      <div class="label">Real wage growth</div>
+      <div class="value">−2.3<span class="unit">%</span></div>
+      <div class="delta up">Year over year, May 2026</div>
     </div>
     <div class="kpi warn">
       <div class="label">NY area inflation</div>
       <div class="value">5.1<span class="unit">%</span></div>
-      <div class="delta">12 months through May 2026</div>
+      <div class="delta">Year over year, May 2026</div>
     </div>
     <div class="kpi">
       <div class="label">NYC average hourly wage</div>
@@ -1205,7 +1205,7 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
     <div class="kpi good">
       <div class="label">NYC unemployment</div>
       <div class="value">4.8<span class="unit">%</span></div>
-      <div class="delta down">▼ from 5.4% in Dec 2025</div>
+      <div class="delta">4.7% a year earlier</div>
     </div>
   </div>
 
@@ -1217,10 +1217,10 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
       <div class="source">Source: <a href="https://www.bls.gov/regions/new-york-new-jersey/" target="_blank">BLS</a> Current Employment Statistics, New York City average hourly earnings, total private (SMU36935610500000003); CPI-U, NY-Newark-Jersey City (CUURS12ASA0). Data through May 2026.</div>
     </div>
     <div class="chart-card">
-      <h3>The average New York paycheck buys 3.4% less than in December</h3>
-      <div class="sub">Real (inflation-adjusted) average hourly wage, January 2024 = 100</div>
+      <h3>Inflation has outrun wage growth in the most recent readings</h3>
+      <div class="sub">Year-over-year percent change, NYC average hourly earnings vs NY-area consumer prices</div>
       <div class="canvas-wrap"><canvas id="chart6b"></canvas></div>
-      <div class="source">Source: BLS; NYC average hourly earnings deflated by NY-area CPI-U. Data through May 2026.</div>
+      <div class="source">Source: BLS. Where the price line sits above the wage line, real wages are falling. Average hourly earnings are volatile month to month because they shift with the mix of jobs in the sample, so single-month readings should not be over-read. Data through May 2026.</div>
     </div>
   </div>
 
@@ -1236,6 +1236,8 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
   <div class="method">
     <h4>Methodology note</h4>
     <p>Real wage index = NYC average hourly earnings (BLS Current Employment Statistics, total private, series SMU36935610500000003 — five boroughs only) divided by CPI-U for the NY-Newark-Jersey City metro area (series CUURS12ASA0), rebased to January 2024 = 100. Unemployment is the BLS Local Area Unemployment Statistics rate for New York City proper (LAUCT365100000000003). The one geographic compromise: no NYC-only CPI exists, so the price side includes the suburbs and northern New Jersey. All series fetched from the BLS public API on July 1, 2026; latest observation May 2026.</p>
+    <p><strong>Why every change is stated year over year.</strong> Wage and price growth are reported as 12-month changes throughout this page, not as movement from the previous month. Month-to-month changes flip sign constantly and mislead: energy prices can fall from last month while still sitting far above where they were a year ago, so a monthly frame prints red on a series that is plainly up on the year. The year-over-year frame is how wage and inflation growth are conventionally read, it is stable enough to interpret, and it still updates every month. The Mamdani marker on each chart is a reference line for context, not a comparison baseline.</p>
+    <p><strong>Why only one earnings series.</strong> This index uses Current Employment Statistics average hourly earnings alone, because it is monthly, specific to the five boroughs, and current through May 2026. Two other earnings measures are deliberately excluded. The Quarterly Census of Employment and Wages is quarterly and its most recent reading is 2025 Q4 — printing it beside a May 2026 wage figure would invite readers to compare numbers from different worlds. The Employment Cost Index is also quarterly and, while somewhat more timely, measures employer compensation costs holding job mix constant, which is not the W2 wage growth a worker experiences. Mixing vintages and definitions would buy no accuracy and cost a great deal of clarity.</p>
   </div>
 </section>
 
@@ -1277,7 +1279,7 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
     <div class="kpi accent">
       <div class="label">Hours of work for the median NYC rent</div>
       <div class="value">94<span class="unit">hrs</span></div>
-      <div class="delta up">▲ from 87 in Dec 2025, 82 in Jan 2024</div>
+      <div class="delta up">▲ 4 hours year over year</div>
     </div>
     <div class="kpi warn">
       <div class="label">NYC median asking rent</div>
@@ -1369,7 +1371,7 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
     <div class="kpi">
       <div class="label">Subway and bus fare</div>
       <div class="value">$3.00</div>
-      <div class="delta up">▲ from $2.90 on Jan 4, 2026</div>
+      <div class="delta up">▲ 3.4% year over year · raised Jan 4, 2026</div>
     </div>
     <div class="kpi warn">
       <div class="label">Average yellow-cab trip</div>
@@ -1879,7 +1881,10 @@ const mamdaniLine = {
   id: 'mamdani',
   afterDatasetsDraw(chart, args, opts) {
     if (!opts || !opts.enabled) return;
-    const px = chart.scales.x.getPixelForValue(iJan26);
+    // Locate the marker by label so it stays correct on charts with a trimmed x-axis
+    const at = chart.data.labels.indexOf("Jan '26");
+    if (at < 0) return;
+    const px = chart.scales.x.getPixelForValue(at);
     const { top, bottom } = chart.chartArea;
     const c = chart.ctx;
     c.save();
@@ -1906,16 +1911,28 @@ new Chart(document.getElementById('chart6a'), {
     scales: { y: { grid: { color: '#eee' } }, x: { grid: { display: false }, ticks: { maxTicksLimit: 10 } } } }
 });
 
-// ===== Chart 6b: real wage =====
+// ===== Chart 6b: wage growth vs inflation, year over year =====
+// Year-over-year is the standard frame for wage and price growth: it avoids the
+// sign-flipping that month-to-month changes produce (a series can fall from last
+// month while still being well up on the year).
+const yoySeries = s => s.map((v, i) => {
+  const prev = i >= 12 ? s[i-12] : null;
+  return (v == null || prev == null) ? null : +((v/prev - 1) * 100).toFixed(2);
+});
+// Year-over-year readings only exist once 12 months of history are available,
+// so this chart starts a year in rather than leaving a third of the axis blank.
+const YSTART = 12;
 new Chart(document.getElementById('chart6b'), {
   type: 'line',
-  data: { labels: MLBL, datasets: [{
-    label: 'Real wage', data: RD.wage.map((w,i) => (w && RD.cpi[i]) ? +((w/RD.cpi[i]) / (RD.wage[0]/RD.cpi[0]) * 100).toFixed(2) : null),
-    borderColor: VC.magenta, backgroundColor: 'rgba(231,70,109,0.10)', fill: true, borderWidth: 3, pointRadius: 0, tension: 0.2, spanGaps: true
-  }]},
+  data: { labels: MLBL.slice(YSTART), datasets: [
+    { label: 'Consumer prices (NY area), YoY', data: yoySeries(RD.cpi).slice(YSTART), borderColor: VC.orange, backgroundColor: VC.orange, borderWidth: 3, pointRadius: 0, tension: 0.2, spanGaps: true },
+    { label: 'NYC average hourly wage, YoY', data: yoySeries(RD.wage).slice(YSTART), borderColor: VC.cerulean, backgroundColor: VC.cerulean, borderWidth: 3, pointRadius: 0, tension: 0.2, spanGaps: true }
+  ]},
   options: { responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false }, mamdani: { enabled: true } },
-    scales: { y: { grid: { color: '#eee' } }, x: { grid: { display: false }, ticks: { maxTicksLimit: 10 } } } }
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } }, mamdani: { enabled: true },
+      tooltip: { callbacks: { label: c => c.dataset.label + ': ' + (c.parsed.y > 0 ? '+' : '') + c.parsed.y + '%' } } },
+    scales: { y: { ticks: { callback: v => (v > 0 ? '+' : '') + v + '%' }, grid: { color: '#eee' } },
+      x: { grid: { display: false }, ticks: { maxTicksLimit: 10 } } } }
 });
 
 // ===== Chart 6c: CPI components YoY =====
