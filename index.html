@@ -428,6 +428,7 @@ html, body { font-family: var(--font-primary); font-weight: 300; color: var(--vc
 .chart-card .source a { color: inherit; text-decoration: underline; }
 
 /* Table */
+.table-scroll { overflow-x: auto; }
 table.cost-table {
   width: 100%;
   border-collapse: collapse;
@@ -576,8 +577,12 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
   .hero h1 { font-size: 32px; }
   .tradeoffs, .chart-grid, .kpi-row { grid-template-columns: 1fr; }
   .kpi-row { grid-template-columns: 1fr 1fr; }
+  .chart-card { min-width: 0; }
   .gauge-wrap { grid-template-columns: 1fr; }
   .gauge-num { font-size: 72px; }
+}
+@media (max-width: 480px) {
+  .kpi-row { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -906,6 +911,7 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
     <div class="chart-card">
       <h3>Housing and childcare eat more than half the basic-needs budget</h3>
       <div class="sub">Illustrative annual basic-needs budget, family of four, two working adults, NYC, 2024 dollars</div>
+      <div class="table-scroll">
       <table class="cost-table" style="margin-top:12px">
         <thead>
           <tr>
@@ -966,6 +972,7 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
           </tr>
         </tbody>
       </table>
+      </div>
       <div class="source">Source: Urban Institute Basic Needs Budget methodology applied to NYC; HUD Fair Market Rents; USDA Thrifty Food Plan; MIT Living Wage Calculator (New York County); Center for an Urban Future; BLS Consumer Expenditure Survey NY metro. Figures are 2024 dollars.</div>
     </div>
   </div>
@@ -1498,6 +1505,7 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
     <div class="chart-card">
       <h3>Who is insulated from market prices — the protected-population ledger</h3>
       <div class="sub">Households or units covered by each affordability protection, latest official figures</div>
+      <div class="table-scroll">
       <table class="cost-table" style="margin-top:12px">
         <thead>
           <tr>
@@ -1534,6 +1542,7 @@ footer .wordmark { font-weight: 900; letter-spacing: 2px; font-size: 18px; margi
           </tr>
         </tbody>
       </table>
+      </div>
       <div class="source">Sources: Rent Guidelines Board / 2023 Housing and Vacancy Survey (stabilized stock); NYCHA fact sheet; NYC FY2027 budget agreement and Independent Budget Office (Fair Fares); DSS CityFHEPS reporting, October 2025. Populations overlap — a stabilized tenant can also hold Fair Fares — so rows must not be summed.</div>
     </div>
   </div>
